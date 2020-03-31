@@ -1,0 +1,602 @@
+
+*
+{
+  margin: 0;
+  padding: 0
+}
+
+/*-------------Top Bar----------*/
+body
+{
+
+   background-color: deepskyblue;
+   font-family: sans-serif;
+  }
+
+.top-nav-bar
+  {
+height: 95px;
+top: 0;
+position: sticky;
+background: grey;;
+margin-bottom: 0;
+border-bottom: 3px solid darkred;
+z-index: 2;
+  }
+
+
+
+
+  .myLogo
+  {
+  height: 90px;
+  margin: 5 px 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  }
+
+
+
+  .form-control
+ {
+height: 30px;
+margin-top: 40px;
+margin-left: 5px;
+border: 1px solid darkslateblue !important;
+border-top-left-radius: 20px !important;
+border-bottom-left-radius: 20px  !important;
+border-top-right-radius: 0  !important;
+border-bottom-right-radius: 0 !important;
+box-shadow: none !important;
+}
+
+
+
+.input-group-text
+{
+background-color: rgb(211, 0, 88) !important;
+border: 1px solid purple;
+margin-right: 30px;
+
+margin-top: 40px;
+height: 37px;
+border-top-left-radius: 0px !important;
+border-bottom-left-radius: 0px  !important;
+border-top-right-radius: 20px !important;
+border-bottom-right-radius: 20px !important;
+cursor: pointer;
+}
+
+.search-box
+{
+display: inline-flex;
+width: 60%;
+}
+
+
+.fa-search
+{
+color: white;
+}
+
+.menu-bar
+{
+width: 40%;
+height: 60px;
+float: right;
+
+}
+
+
+.menu-bar ul
+{
+display: inline-flex;
+float: right;
+margin-left: 20px;
+}
+
+.menu-bar ul li
+{
+border-left: 1px solid white !important;
+list-style-type: none;
+padding: 15px 35px;
+
+text-align: center;
+background-color: darkred;
+cursor: pointer;
+border-top-left-radius: 20px !important;
+border-bottom-left-radius: 20px  !important;
+border-top-right-radius: 20px !important;
+border-bottom-right-radius: 20px !important;
+}
+
+.menu-bar ul li a
+{
+font-size: 16px;
+font-weight: bold;
+color:white;
+text-decoration: none;
+}
+/*-------------Size fix----------*/
+@media only screen and (max-width:980px)
+{
+    .top-nav-bar
+    {
+    height:118px;
+    border-bottom: 0;
+    }
+    .search-box
+    {
+      width:100%;
+    }
+    .menu-bar
+    {
+     width: 100%;
+    }
+    .menu-bar ul
+    {
+      margin: 10px 0;
+      width: 100%;
+    }
+    .menu-bar ul li
+    {
+      height:57px;
+      width: 100%;
+    }
+
+}
+/*-------------Side Menu----------*/
+.side-menu
+{
+margin-top: 0px;
+height: 79%;
+width: 15%;
+font-size: 15px;
+float: left;
+z-index: 2;
+background-color: grey;
+
+}
+
+.side-menu ul
+{
+margin-left: 10px;
+
+}
+
+
+.side-menu ul li
+{
+list-style-type: none;
+font-weight: bold;
+margin-top: 10px;
+cursor: pointer;
+
+
+}
+
+
+
+.side-menu ul  :hover
+{
+  color:white;
+}
+
+.side-menu ul li ul
+{
+  display:none;
+  z-index: 10;
+  top: 57px;
+}
+
+.side-menu ul   :hover ul
+{
+  display: block;
+  height: 400px;
+  margin-top: 38px;
+  margin-left: 14%;
+  padding: 0 100px 10px 10px;
+  position: fixed;
+  background: gray;
+  box-shadow: 1px  1px 4px 1 px white;
+}
+
+.fa-angle-right
+{
+  margin-top: 4px;
+  margin-right: 8px;
+  float: right;
+}
+
+#menu-btn, #close-btn
+{
+font-size: 30px;
+margin: 10px;
+color: white;
+display: none;
+}
+
+/*-------------Size fix----------*/
+@media only screen and (max-width:980px)
+{
+    .side-menu
+    {
+    width: 34%;
+    z-index: 20;
+    top: 164px;
+    position: fixed;
+    font-size:12px;
+    background: grey;
+    }
+
+    .side-menu ul li ul
+    {
+    top: 126px;
+    }
+    .side-menu ul :hover ul
+    {
+      margin-left: 32%;
+      }
+
+      #menu-btn
+      {
+        display:block;
+      }
+}
+
+/*-------------image slider----------*/
+
+.slider
+{
+  width: 85%;
+  margin-left: 15%;
+  padding: 0 10px;
+}
+.carousel
+{
+  box-shadow: 1px 1px 4px 1px grey;
+}
+.carousel-indicators
+{
+  z-index: 1 !important;
+}
+
+/*-------------Size fix----------*/
+@media only screen and (max-width:980px)
+{
+.slider
+{
+  width: 100%;
+  margin-left: 0;
+}
+
+}
+
+/*-------------featured-categories-Css----------*/
+
+.featured-categories
+{
+  margin: 50px 0;
+  margin-left: 200px;
+}
+
+.featured-categories img
+{
+  width: 70%;
+  padding: 20px 0;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.featured-categories img:hover
+{
+  transform: scale(1.1);
+}
+
+/*-------------OnSaleProductsCss----------*/
+
+
+.title-box
+{
+background-color: grey;
+color: white;
+width: 170px;
+padding: 4px 10px;
+height: 40px;
+margin-bottom: 30px;
+display: flex;
+}
+
+
+.title-box h2
+{
+  font-size: 24px;
+}
+
+.title-box::after
+{
+  content:'';
+  border-top: 40px solid grey;
+  border-right: 50px solid transparent;
+  position: absolute;
+  display: flex;
+  margin-top: -4px;
+  margin-left: 160px;
+}
+
+
+/*-------------ProductTopCss----------*/
+
+.product-top
+
+{
+
+width: 100%;
+
+margin-left: 35px;
+cursor: pointer;
+
+}
+
+.product-top img
+
+{
+  width: 70%;
+
+}
+
+/*-------------Size fix----------*/
+@media only screen and (max-width:980px)
+{
+.product-top
+{
+  width: 50%;
+  margin-left: 33%;
+
+}
+
+
+}
+
+.overlay-right
+{
+  display: inline-block;
+  opacity: 0;
+  position: absolute;
+  top: 10%;
+  margin-left: 0;
+  margin-right: 2px;
+  width: 100px;
+
+}
+
+.overlay-right .fa
+{
+  cursor: pointer;
+  background-color: white;
+  color:grey;
+  height: 35px;
+  width: 40px;
+  font-size: 28px;
+  padding: 7px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.overlay-right .btn-secondary
+{
+background: none !important ;
+border: none !important;
+box-shadow: none !important;
+}
+
+
+.product-top:hover .overlay-right
+{
+  opacity: 2;
+  margin-left: -55%;
+  margin-right: 5%;
+  transition: 0.5s;
+}
+
+
+/*-------------ProductBottomCss----------*/
+
+.product-bottom .fa
+{
+  color: darkred;
+  font-size: 18px;
+}
+
+.product-bottom h3
+{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.product-bottom h5
+{
+  font-size: 15px;
+  padding-bottom: 18px;
+}
+
+.New-products
+{
+  margin: 50px 0;
+}
+/*------------Website features css----------*/
+.website-features
+{
+margin: 60px 0;
+}
+
+.website-features img
+{
+  width: 30%;
+  }
+
+  .feature-text
+  {
+    margin-top: -35px;
+    float: right;
+    width: 70%;
+    padding-left: 40px;
+    padding-top: 30px;
+  }
+
+  .feature-box
+  {
+   padding-top: 10px;
+  }
+
+
+  /*------------Footer css----------*/
+.footer
+{
+  margin-top: 50px;
+  background: black;
+  color: white;
+  border-top:3px solid darkred;
+}
+
+.footer h1
+{
+  font-size: 15px;
+  margin: 25px 0;
+
+
+}
+.footer p
+{
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/*------------Single product Css----------*/
+
+
+.single-product
+{
+margin-top: 70px;
+
+}
+
+.new-arrival
+{
+background:red;
+width: 50px;
+color: white;
+font-size: 12px;
+font-weight: bold;
+margin-top: 20px;
+
+}
+
+
+.single-product.fa
+{
+color: darkred;
+}
+
+.single-product .price
+{
+color: darkred;
+font-size: 26px;
+font-weight: bold;
+padding-top: 20px;
+
+}
+
+.single-product input
+{
+border: 1px solid grey;
+font-weight: bold;
+height: 33px;
+margin-left: 10px;
+text-align: center;
+width: 30px;
+
+}
+
+
+.single-product .btn-primary
+{
+background: grey !important;
+color: white;
+font-size: 20px;
+margin-left: 20px;
+border:none;
+box-shadow: none !important;
+
+}
+
+
+/*------------product description Css----------*/
+.product-description h3
+{
+  margin-top: 50px;
+  color: darkred;
+}
+
+.product-description p
+{
+  margin-top: 50px;
+  color: grey;
+}
+/*------------Register form Css----------*/
+.register
+{
+
+  margin-top: 0px;
+  background: GRAY;
+  color: white;
+}
+
+.register form
+{
+  margin-top: 30px;
+  margin-left: 500px;
+
+
+}
+
+.register button
+{
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-bottom: 30px;
+
+}
+
+
+
+#display ul li a:hover:not(.header) {
+  background-color: #eee; /* Add a hover effect to all links, except for headers */
+}
+
+#display {
+  /* Remove default list styling */
+  list-style-type: none;
+  padding: 0;
+  border-bottom:solid 1px #BDC7D8;
+	padding:10px;
+	font-family:Times New Roman;
+	font-size: 20px;color:blue;
+
+}
+
+#display li a {
+  border: 1px solid #ddd; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6; /* Grey background color */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  display: block; /* Make it into a block element to fill the whole list */
+  margin right: 20px;
+  width: 50%;
+}
+.qs{
+  display: block;
+}
