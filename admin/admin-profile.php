@@ -1,5 +1,5 @@
 <?php
-include('../functions.php');
+include('../functions/functions.php');
 if (!isLoggedIn()) {
 	$_SESSION['msg'] = "You must log in first";
 	header('location: login.php');
@@ -46,7 +46,7 @@ $stmt->close();
 		<div class="search-box">
 			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
 			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
-      <a href="home.php"><img src="../images/admin_profile.png" class ="myLogo"></a>
+      <a href="home.php"><img src="../imgs/admin_profile.png" class ="myLogo"></a>
 			<h2><br/>Admin - Profile Page</h2>
     </div>
     <div class="menu-bar">

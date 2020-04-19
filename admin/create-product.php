@@ -1,4 +1,4 @@
-<?php include('../functions.php') ?>
+<?php include('../functions/functions.php') ?>
 <!DOCTYPE html>
 <html>
 <head>

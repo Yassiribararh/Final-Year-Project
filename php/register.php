@@ -1,10 +1,10 @@
-<?php include('functions.php') ?>
+<?php include('../functions/functions.php') ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Registration system PHP and MySQL</title>
-  <link rel="stylesheet" href="stylelogin.css">
+  <link rel="stylesheet" href="../styles/stylelogin.css">
 </head>
 <body>
 <div class="header">

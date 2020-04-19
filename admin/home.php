@@ -1,15 +1,15 @@
 <?php
-include('../functions.php');
+include('../functions/functions.php');
 
 if (!isAdmin()) {
 	$_SESSION['msg'] = "You must log in first";
-	header('location: ../login.php');
+	header('location: ../php/login.php');
 }
 
 if (isset($_GET['logout'])) {
 	session_destroy();
 	unset($_SESSION['user']);
-	header("location: ../login.php");
+	header("location: ../php/login.php");
 }
 
 $DATABASE_HOST = 'localhost';
@@ -60,8 +60,8 @@ tr:nth-child(even) {
 		<meta charset="utf-8">
 		<title>Genuine Shop</title>
 
-		<link rel="stylesheet" type="text/css" href="../Styles.css">
-    <link rel="stylesheet" type="text/css" href="../styless.css">
+		<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
+    <link rel="stylesheet" type="text/css" href="../styles/styless.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
 		<Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -69,13 +69,13 @@ tr:nth-child(even) {
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <!-- Including our scripting file. -->
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="../scripts/script.js"></script>
   </head>
 	<div class="top-nav-bar">
 		<div class="search-box">
 			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
 			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
-      <a href="home.php"><img src="../images/admin_profile.png" class ="myLogo"></a>
+      <a href="home.php"><img src="../imgs/admin_profile.png" class ="myLogo"></a>
 			<h2><br/>Admin - Home Page</h2>
     </div>
     <div class="menu-bar">
@@ -92,26 +92,7 @@ tr:nth-child(even) {
     </div>
   </div>
 	<body>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Home</title>
-	<link rel="stylesheet" type="text/css" href="../style.css">
-	<style>
-	.header {
-		background: #003366;
-	}
-	button[name=register_btn] {
-		background: #003366;
-	}
-	</style>
-</head>
-<body>
-
-
 		<!-- logged in user information -->
-
 <h4 style="text-align:center; text-decoration-style: solid; background: darkgrey; color: white; margin-bottom:20px;">Welcome back, <?=$_SESSION['user']['username']?>!
 <small><i  style="color: white;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i><br></small></h4>
 

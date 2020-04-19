@@ -1,9 +1,9 @@
-<?php include('functions.php') ?>
+<?php include('../functions/functions.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Registration system PHP and MySQL</title>
-	<link rel="stylesheet" type="text/css" href="stylelogin.css">
+	<link rel="stylesheet" type="text/css" href="../styles/stylelogin.css">
 </head>
 <body>
 	<div class="header">

@@ -1,5 +1,5 @@
 <?php
-include('functions.php');
+include('../functions/functions.php');
 if (!isLoggedIn()) {
 	$_SESSION['msg'] = "You must log in first";
 	header('location: login.php');
@@ -65,7 +65,7 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		       <div class="col-md-3">
 		         <div class="product-top">
 		           <a href="index.php?page=product&id=<?=$product['id']?>" class="product">
-		           <img src="imgs/<?=$product['img']?>" width="200" height="200" alt="<?=$product['name']?>">
+		           <img src="../imgs/<?=$product['img']?>" width="200" height="200" alt="<?=$product['name']?>">
 		         </div>
 		       <div class="product-bottom text-center">
 		 	      <i class="fa fa-star"></i>

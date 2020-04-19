@@ -62,7 +62,7 @@ function register(){
 					  VALUES('$username', '$email', '$user_type', '$password', '$postcode', '$address', '$phonenumber')";
 			mysqli_query($db, $query);
 			$_SESSION['success']  = "New user successfully created!!";
-			header('location: home.php');
+			header('location: ../php/home.php');
 		}else{
 			$query = "INSERT INTO users (username, email, user_type, password, postcode, address, phonenumber)
 					  VALUES('$username', '$email', 'user', '$password', '$postcode', '$address', '$phonenumber')";
@@ -73,7 +73,7 @@ function register(){
 
 			$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
 			$_SESSION['success']  = "You are now logged in";
-			header('location: home.php');
+			header('location: ../php/home.php');
 		}
 	}
 }
@@ -119,7 +119,7 @@ function isLoggedIn()
 if (isset($_GET['logout'])) {
 	session_destroy();
 	unset($_SESSION['user']);
-	header("location: login.php");
+	header("location: ../php/login.php");
 }
 
 // call the login() function if register_btn is clicked
@@ -157,12 +157,12 @@ function login(){
 
 				$_SESSION['user'] = $logged_in_user;
 				$_SESSION['success']  = "You are now logged in";
-				header('location: admin/home.php');
+				header('location: ../admin/home.php');
 			}else{
 				$_SESSION['user'] = $logged_in_user;
 				$_SESSION['success']  = "You are now logged in";
 
-				header('location: home.php');
+				header('location: ../php/home.php');
 			}
 		}else {
 			array_push($errors, "Wrong username/password combination");
@@ -201,8 +201,8 @@ echo <<<EOT
 	 <meta charset="utf-8">
 	 <title>Genuine Shop</title>
 
-	 <link rel="stylesheet" type="text/css" href="styless.css">
-		<link rel="stylesheet" type="text/css" href="Styles.css">
+	 <link rel="stylesheet" type="text/css" href="../styles/styless.css">
+		<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
 	 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
 	 <Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -210,13 +210,13 @@ echo <<<EOT
 	 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 	 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<!-- Including our scripting file. -->
-		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="../scripts/script.js"></script>
 	</head>
 	<div class="top-nav-bar">
 		<div class="search-box">
 			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
 			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
-      <a href="home.php"><img src="imgs/myLogo1.jpg" class ="myLogo"></a>
+      <a href="home.php"><img src="../imgs/myLogo1.jpg" class ="myLogo"></a>
       <form class="search-box" method="POST" action="Search_results.php">
         <input type="text" class="form-control" id="search" placeholder="Search here..." name="keyword" required="required"/>
         <span class="input-group-btn">

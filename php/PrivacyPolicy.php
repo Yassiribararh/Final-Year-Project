@@ -1,5 +1,5 @@
 <?php
-include('functions.php');
+include('../functions/functions.php');
 if (!isLoggedIn()) {
 	$_SESSION['msg'] = "You must log in first";
 	header('location: login.php');
@@ -11,8 +11,8 @@ if (!isLoggedIn()) {
 		<meta charset="utf-8">
 		<title>Genuine Shop</title>
 
-		<link rel="stylesheet" type="text/css" href="Styles.css">
-    <link rel="stylesheet" type="text/css" href="styless.css">
+		<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
+    <link rel="stylesheet" type="text/css" href="../styles/styless.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
 		<Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,28 +20,28 @@ if (!isLoggedIn()) {
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <!-- Including our scripting file. -->
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="../scripts/script.js"></script>
   </head>
 	<div class="top-nav-bar">
 		<div class="search-box">
 			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
 			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
-      <a href="home.php"><img src="imgs/myLogo1.jpg" class ="myLogo"></a>
-      <form class="search-box" method="POST" action="Search_results.php">
-        <input type="text" class="form-control" id="search" placeholder="Search here..." name="keyword" required="required"/>
-        <span class="input-group-btn">
-          <button class="input-group-text" name="search"><span ><i class="fa fa-search"></i></span></button>
-        </span>
-      </form>
-      <br />
-    </div>
-    <div class="menu-bar">
+			<a href="home.php"><img src="../imgs/myLogo1.jpg" class ="myLogo"></a>
+			<form class="search-box" method="POST" action="Search_results.php">
+				<input type="text" class="form-control" id="search" placeholder="Search here..." name="keyword" required="required"/>
+				<span class="input-group-btn">
+					<button class="input-group-text" name="search"><span ><i class="fa fa-search"></i></span></button>
+				</span>
+			</form>
+			<br />
+		</div>
+		<div class="menu-bar">
 			<ul>
 				<li><a href="index.php?page=cart"><i class="fa fa-shopping-basket "></i> cart</a> </li>
 				<li><a href="profile.php"><i class="fas fa-user-circle"></i> Profile</a>
-				<li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</li></a>
-      </ul>
-    </div>
+				<li><a href="home.php?logout='1'"><i class="fas fa-sign-out-alt"></i> Logout</li></a>
+			</ul>
+		</div>
     <div style="width: 700px;margin-top:-25px; auto; margin-left:100px; cursor:pointer; width: 48%;">
       <ul style=" list-style-type: none; ">
         <li style=" list-style-type: none;"><div id="display" style="border:solid 0 #BDC7D8;display:none; "></div></li>

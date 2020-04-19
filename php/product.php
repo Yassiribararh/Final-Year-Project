@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
         <div id="product-slider" class="carousel slide carousel-fade" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="imgs/<?=$product['img']?>" class="d-block w-100"alt="..." >
+              <img src="../imgs/<?=$product['img']?>" class="d-block w-100"alt="..." >
             </div>
             <a class="carousel-control-prev" href="#product-slider" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>

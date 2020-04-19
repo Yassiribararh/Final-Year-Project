@@ -46,7 +46,7 @@ $(document).ready(function() {
 
                //Data will be sent to "ajax.php".
 
-               url: "ajax.php",
+               url: "../php/ajax.php",
 
                //Data, that will be sent to "ajax.php".
 
@@ -65,7 +65,7 @@ $(document).ready(function() {
                    //Assigning result to "display" div in "search.php" file.
 
                    $("#display").html(html).show();
-                   
+
 
                }
 

@@ -1,5 +1,5 @@
 <?php
-include('functions.php');
+include('../functions/functions.php');
 if (!isLoggedIn()) {
 	$_SESSION['msg'] = "You must log in first";
 	header('location: login.php');
@@ -11,8 +11,8 @@ if (!isLoggedIn()) {
 	<head>
 		<meta charset="utf-8">
 		<title>Genuine Shop</title>
-    <link rel="stylesheet" type="text/css" href="Styles.css">
-		<link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../styles/Styles.css">
+		<link rel="stylesheet" type="text/css" href="../styles/styles.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
 		<Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -28,7 +28,7 @@ if (!isLoggedIn()) {
 							<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
 							<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
 
-							<a href="index.php"><img src="imgs/myLogo1.jpg" class ="myLogo"></a>
+							<a href="home.php"><img src="../imgs/myLogo1.jpg" class ="myLogo"></a>
              <form class="search-box" method="POST" action="Search_results.php">
 
                       <input type="text" class="form-control" id="search" placeholder="Search here..." name="keyword" required="required"/>
@@ -56,32 +56,18 @@ if (!isLoggedIn()) {
 
 						</div>
             <div style="width: 700px;margin-top:-25px; auto; margin-left:100px; cursor:pointer; width: 48%;">
-
   								 <ul style=" list-style-type: none; ">
-
   									 <li style=" list-style-type: none;"><div id="display" style="border:solid 0 #BDC7D8;display:none; "></div></li>
-
-
   								 </ul>
-
-
   					</div>
   				</div>
-
-
 					<body>
-
-
-
 							<div class="col-md-1" ></div>
 							<div class="col-md-10">
-
 								<br />
 								<?php include 'search.php'?>
 							</div>
 						</div>
-
-
 					</body>
 					<!-------------Footer---------->
 					<section class="footer">
@@ -90,9 +76,7 @@ if (!isLoggedIn()) {
 											<div class="col-md-3">
 													<h1>Useful Links</h1>
 													<a href="PrivacyPolicy.php" style="color:white"><p>Privacy Policy</p></a>
-
 													<a href="ReturnPolicy.php" style="color:white"><p>Return Policy</p></a>
-
 												</div>
 											<div class="col-md-3">
 														<h1>Company</h1>
@@ -105,10 +89,7 @@ if (!isLoggedIn()) {
 															<a href="https://instagram.com/" style="color:white"><p><i class=" fa fa-instagram "></i> Instagram</p></a>
 															<a href="https://www.twitter.com/" style="color:white"><p><i class=" fa fa-twitter"></i> Twitter</p></a>
 														</div>
-
 										</div>
 							</div>
-
 					</section>
-
-					</html>
+</html>

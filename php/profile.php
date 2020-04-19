@@ -1,5 +1,5 @@
 <?php
-include('functions.php');
+include('../functions/functions.php');
 if (!isLoggedIn()) {
 	$_SESSION['msg'] = "You must log in first";
 	header('location: login.php');
@@ -31,8 +31,8 @@ $stmt->close();
 		<meta charset="utf-8">
 		<title>Genuine Shop</title>
 
-		<link rel="stylesheet" type="text/css" href="Styles.css">
-    <link rel="stylesheet" type="text/css" href="styless.css">
+		<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
+    <link rel="stylesheet" type="text/css" href="../styles/styless.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
 		<Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -40,13 +40,13 @@ $stmt->close();
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <!-- Including our scripting file. -->
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="../scripts/script.js"></script>
   </head>
 	<div class="top-nav-bar">
 		<div class="search-box">
 			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
 			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
-      <a href="home.php"><img src="imgs/myLogo1.jpg" class ="myLogo"></a>
+      <a href="home.php"><img src="../imgs/myLogo1.jpg" class ="myLogo"></a>
       <form class="search-box" method="POST" action="Search_results.php">
         <input type="text" class="form-control" id="search" placeholder="Search here..." name="keyword" required="required"/>
         <span class="input-group-btn">
@@ -82,7 +82,7 @@ $stmt->close();
 				<p>Your account details are below:</p>
 				<table>
 					<?php  if (isset($_SESSION['user'])) : ?>
-									<img src="images/user_profile.png" style="width: 10%" >
+									<img src="../imgs/user_profile.png" style="width: 10%" >
 								 <h4><?php echo $_SESSION['user']['username']; ?></h4>
 
 
