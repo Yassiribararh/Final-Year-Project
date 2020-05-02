@@ -4,17 +4,13 @@
 <head>
 	<title>Create user</title>
 	<link rel="stylesheet" type="text/css" href="../stylelogin.css">
-
 </head>
 <body>
 	<div class="header">
 		<h2>Admin - create user</h2>
 	</div>
-
 	<form method="post" action="create_user.php">
-
 		<?php echo display_error(); ?>
-
 		<div class="input-group">
 			<label>Username</label>
 			<input type="text" name="username" value="<?php echo $username; ?>">

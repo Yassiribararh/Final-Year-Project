@@ -1,4 +1,3 @@
-
 <?php
 // If the user clicked the add to cart button on the product page we can check for the form data
 if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
@@ -179,21 +178,45 @@ if (isset($_GET['ipn_listener']) && $_GET['ipn_listener'] == 'paypal') {
     }
     exit;
 }
+
+if (isset($_POST['pay-cash'])) {
+	addtrans();
+}
+
+function addtrans(){
+$database = mysqli_connect('localhost', 'root', '', 'phplogin');
+global $product;
+
+	$fullname    =  $_POST['fullname'];
+	$email       =  $_POST['payer_email'];
+	$postcode  =  $_POST['postcode'];
+	$address  =  $_POST['payer_address'];
+	$phonenumber  =  $_POST['phonenumber'];
+  $date  =  $_POST['todaydate'];
+  $subtotal  =  $_POST['subtotal'];
+  $productid  =  $product['id'];
+  $productname  =  $product['name'];
+  $productquantity  =  $product['quantity'];
+
+  $query = "INSERT INTO transactions (fullname, payer_email, payer_address, payment_status, payer_phone,
+                                    	payer_postcode, created, payment_amount)
+        VALUES('$fullname', '$email', '$address', 'Cash-payement', '$phonenumber', '$postcode', '$date', '$subtotal')";
+  mysqli_query($database, $query);
+  header('Location: index.php?page=placeorder');
+}
+
 ?>
 <style>
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 50%;
-
 }
 
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-
-
 }
 
 .head {
@@ -206,7 +229,6 @@ tr:nth-child(even) {
 }
 
 .paypal {
-
 	padding-bottom: 40px;
 }
 .paypal button {
@@ -221,85 +243,146 @@ tr:nth-child(even) {
 .paypal button:hover {
 	background-color: #f3bb37;
 }
+.input-group {
+	margin: 10px 0px 10px 0px;
+}
+.input-group label {
+	display: block;
+	text-align: left;
+	margin: 3px;
+
+}
+.input-group input {
+	height: 30px;
+	width: 93%;
+	padding: 5px 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid gray;
+}
+.cash{
+	width: 40%;
+	margin: 0px auto;
+	padding: 20px;
+	border: 1px solid #B0C4DE;
+	background: white;
+	border-radius: 0px 0px 10px 10px;
+}
 </style>
 <?=template_header('Cart')?>
+
 <body>
-
-<div class="cart content-wrapper"  >
-    <h1 style="margin-left: 300px;">Shopping Cart:</h1>
+  <div class="cart content-wrapper"  >
+    <h1 style="text-align:center;">Shopping Cart:</h1>
     <form action="index.php?page=cart" method="post">
-        <table style="margin-left: 300px;" >
-            <thead>
-                <tr>
-                    <td colspan="2" class="head"><h5>Product</h5></td>
-                    <td style="padding-right: 20px;" class="head"><h5>Price</h5></td>
-                    <td style="padding-right: 20px;" class="head"><h5>Quantity</h5></td>
-                    <td style="padding-right: 20px;" class="head"><h5>Total</h5></td>
-                </tr>
-            </thead>
-            <tbody >
-
-
-                <?php if (empty($products)): ?>
-                <tr>
-                    <td colspan="5" style="text-align:center;">You have no products added in your Shopping Cart</td>
-                </tr>
-                <?php else: ?>
-                <?php foreach ($products as $product): ?>
-                <tr>
-                    <td class="img">
-                        <a href="index.php?page=product&id=<?=$product['id']?>">
-                            <img src="imgs/<?=$product['img']?>" width="50" height="50" alt="<?=$product['name']?>">
-                        </a>
-                    </td>
-                    <td>
-                        <a href="index.php?page=product&id=<?=$product['id']?>"><?=$product['name']?></a>
-                        <br>
-
-                        <button><a href="index.php?page=cart&remove=<?=$product['id']?>" class="remove" style="color:black;">Remove</a></button>
-                        <hr style="border-top:2px dotted #ccc;"/>
-                    </td>
-                    <td class="price">&dollar;<?=$product['price']?></td>
-                    <td class="quantity">
-                        <input type="number" name="quantity-<?=$product['id']?>" value="<?=$products_in_cart[$product['id']]?>" min="1" max="<?=$product['quantity']?>" placeholder="Quantity" required>
-                    </td>
-                    <td class="price">&dollar;<?=$product['price'] * $products_in_cart[$product['id']]?></td>
-                </tr>
-                <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
-        </table>
-
-
-
-
-<table style="margin-left: 300px;" >
-    <thead>
+      <table style="margin: auto;" >
+        <thead>
+          <tr>
+            <td colspan="2" class="head"><h5>Product</h5></td>
+            <td style="padding-right: 20px;" class="head"><h5>Price</h5></td>
+            <td style="padding-right: 20px;" class="head"><h5>Quantity</h5></td>
+            <td style="padding-right: 20px;" class="head"><h5>Total</h5></td>
+          </tr>
+        </thead>
+      <tbody >
+      <?php if (empty($products)): ?>
+        <tr>
+          <td colspan="5" style="text-align:center;">You have no products added in your Shopping Cart</td>
+        </tr>
+      <?php else: ?>
+      <?php foreach ($products as $product): ?>
+      <tr>
+        <td class="img">
+          <a href="index.php?page=product&id=<?=$product['id']?>">
+            <img src="../imgs/<?=$product['img']?>" width="50" height="50" alt="<?=$product['name']?>">
+          </a>
+        </td>
+        <td>
+          <a href="index.php?page=product&id=<?=$product['id']?>"><?=$product['name']?></a>
+          <br>
+          <button><a href="index.php?page=cart&remove=<?=$product['id']?>" class="remove" style="color:black;">Remove</a></button>
+          <hr style="border-top:2px dotted #ccc;"/>
+          </td>
+          <td class="price">&dollar;<?=$product['price']?></td>
+          <td class="quantity">
+            <input type="number" name="quantity-<?=$product['id']?>" value="<?=$products_in_cart[$product['id']]?>" min="1" max="<?=$product['quantity']?>" placeholder="Quantity" required>
+          </td>
+          <td class="price">&dollar;<?=$product['price'] * $products_in_cart[$product['id']]?></td>
+        </tr>
+        <?php endforeach; ?>
+        <?php endif; ?>
+      </tbody>
+    </table>
+    <table style="margin: auto;" >
+      <thead>
         <tr>
           <td colspan="2" class="head"><h5>Pay with: </h5></td>
-
-</tr>
-    </thead>
-<tbody >
-  <tr>
-    <td colspan="5" style="text-align:center;">
-      <div class="paypal">
-        <button type="submit" name="paypal"><img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" border="0" alt="PayPal Logo"></button>
-      </div>
-    </td>
-  </tr>
-</tbody>
-</table>
-<div class="subtotal" style="margin-left: 830px;">
-    <span class="text">Order Total:</span>
-    <span class="price">&dollar;<?=$subtotal?></span>
+        </tr>
+      </thead>
+      <tbody >
+        <tr>
+          <td colspan="5" style="text-align:center;">
+            <div class="paypal">
+              <button type="submit" name="paypal"><img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" border="0" alt="PayPal Logo"></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="subtotal" style="text-align:center;">
+      <span class="text">Order Total:</span>
+      <span class="price">&dollar;<?=$subtotal?></span>
+    </div>
+    <div class="buttons" style="text-align:center; margin-bottom: 102px;">
+      <input type="submit" value="Update" name="update">
+      <!-- <input type="submit" value="Place Order" name="placeorder"> -->
+    </div>
+  </form>
+  <form method="post" action="cart.php">
+    <table style="margin: auto;" >
+      <thead>
+        <tr>
+          <td colspan="2" class="head"><h5>Or with cash upon arrival: </h5></td>
+        </tr>
+      </thead>
+      <tbody >
+        <tr>
+          <td colspan="5" style="margin: auto;" class="cash">
+            <div class="input-group" >
+            	<label>Full Name:</label>
+          		<input type="text" name="fullname">
+          	</div>
+          	<div class="input-group">
+          		<label>Email:</label>
+          		<input type="email" name="payer_email">
+          	</div>
+          	<div class="input-group">
+          		<label>Postcode</label>
+          		<input type="text" name="postcode">
+          	</div>
+          	<div class="input-group">
+          		<label>Address</label>
+          		<input type="text" name="payer_address">
+          	</div>
+          	<div class="input-group">
+          		<label>Phone Number</label>
+          		<input type="text" name="phonenumber">
+          	</div>
+            <div class="input-group">
+          		<label>Subtotal</label>
+          		<input type="text" name="subtotal" readonly="readonly" value="<?=$subtotal?>">
+          	</div>
+            <div class="input-group">
+              <label>Order Date:</label>
+              <input name="todaydate" type="text" placeholder="DD-MM-YYYY">
+          	</div>
+            <div class="input-group">
+          		<button type="submit" class="button" name="pay-cash" style="margin:auto;">Submit</button>
+          	</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
 </div>
-<div class="buttons" style="margin-left: 830px; margin-bottom: 102px;">
-    <input type="submit" value="Update" name="update">
-    <input type="submit" value="Place Order" name="placeorder">
-</div>
-</form>
-</div>
-
-
 <?=template_footer()?>

@@ -1,0 +1,15 @@
+{
+  "name": "html-to-pdf-invoice-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "../php/placeorder.php",
+  "scripts": {
+    "start": "parcel ../php/placeorder.php --open",
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "7.2.0",
+    "parcel-bundler": "^1.6.1"
+  },
+  "keywords": []
+}

@@ -10,9 +10,7 @@
 		<h2>Login</h2>
 	</div>
 	<form method="post" action="login.php">
-
 		<?php echo display_error(); ?>
-
 		<div class="input-group">
 			<label>Username</label>
 			<input type="text" name="username" >

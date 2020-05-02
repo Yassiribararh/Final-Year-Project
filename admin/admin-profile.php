@@ -28,9 +28,8 @@ $stmt->close();
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+	  <meta charset="utf-8">
 		<title>Genuine Shop</title>
-
 		<link rel="stylesheet" type="text/css" href="../Styles.css">
     <link rel="stylesheet" type="text/css" href="../styless.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
@@ -51,7 +50,6 @@ $stmt->close();
     </div>
     <div class="menu-bar">
 			<ul>
-
 				<li><a href="admin-profile.php"><i class="fas fa-user-circle"></i> Profile</a>
 				<li><a href="home.php?logout='1'"><i class="fas fa-sign-out-alt"></i> Logout</li></a>
       </ul>
@@ -63,50 +61,37 @@ $stmt->close();
     </div>
   </div>
 	<body>
-
-
-
-
-
-
-		<div class="content">
-			<h2>Profile Details</h2>
-
-			<div>
-				<p>Your account details are below:</p>
-				<table>
-					<?php  if (isset($_SESSION['user'])) : ?>
-									<img src="../images/admin_profile.png" style="width: 10%" >
-								 <h4><?php echo $_SESSION['user']['username']; ?></h4>
-
-
-									 <h4>(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</h4>
-									 <br>
-
-
-
-							 <?php endif ?>
-					<tr>
-						<td>Username:</td>
-						<td><?=$_SESSION['user']['username']?></td>
-					</tr>
-
-					<tr>
-						<td>Email:</td>
-						<td><?=$_SESSION['user']['email']?></td>
-					</tr>
-					<tr>
-						<td>Address:</td>
-						<td><?=$_SESSION['user']['address']?></td>
-					</tr>
-					<tr>
-						<td>Postcode:</td>
-						<td><?=$_SESSION['user']['postcode']?></td>
-					</tr>
-					<tr>
-						<td>Phone Number:</td>
-						<td><?=$_SESSION['user']['phonenumber']?></td>
-					</tr>
-				</table>
-			</div>
-		</div>
+	  <div class="content">
+		  <h2>Profile Details</h2>
+		<div>
+		<p>Your account details are below:</p>
+		<table>
+			<?php  if (isset($_SESSION['user'])) : ?>
+				<img src="../images/admin_profile.png" style="width: 10%" >
+				<h4><?php echo $_SESSION['user']['username']; ?></h4>
+				<h4>(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</h4>
+				<br>
+			<?php endif ?>
+			<tr>
+				<td>Username:</td>
+				<td><?=$_SESSION['user']['username']?></td>
+			</tr>
+			<tr>
+			  <td>Email:</td>
+				<td><?=$_SESSION['user']['email']?></td>
+			</tr>
+			<tr>
+				<td>Address:</td>
+				<td><?=$_SESSION['user']['address']?></td>
+			</tr>
+			<tr>
+				<td>Postcode:</td>
+				<td><?=$_SESSION['user']['postcode']?></td>
+			</tr>
+			<tr>
+				<td>Phone Number:</td>
+				<td><?=$_SESSION['user']['phonenumber']?></td>
+			</tr>
+		</table>
+	</div>
+</div>

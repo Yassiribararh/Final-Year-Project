@@ -41,7 +41,6 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-
 }
 
 .head {
@@ -59,7 +58,6 @@ tr:nth-child(even) {
 	<head>
 		<meta charset="utf-8">
 		<title>Genuine Shop</title>
-
 		<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
     <link rel="stylesheet" type="text/css" href="../styles/styless.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
@@ -80,7 +78,6 @@ tr:nth-child(even) {
     </div>
     <div class="menu-bar">
 			<ul>
-
 				<li><a href="admin-profile.php"><i class="fas fa-user-circle"></i> Profile</a>
 				<li><a href="home.php?logout='1'"><i class="fas fa-sign-out-alt"></i> Logout</li></a>
       </ul>
@@ -91,86 +88,77 @@ tr:nth-child(even) {
       </ul>
     </div>
   </div>
-	<body>
-		<!-- logged in user information -->
-<h4 style="text-align:center; text-decoration-style: solid; background: darkgrey; color: white; margin-bottom:20px;">Welcome back, <?=$_SESSION['user']['username']?>!
-<small><i  style="color: white;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i><br></small></h4>
-
-	<?php
-$con=mysqli_connect('localhost', 'root', '', 'phplogin');
-// Check connection
-if (mysqli_connect_errno())
-{
-echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
-$users = mysqli_query($con,"SELECT * FROM users");
-
-echo "<h5 style='color:darkred; text-align:center;'>Users:</h5>";
-echo "<table border='1'  style='margin-left:auto; margin-right:auto;' >
-<tr>
-<th>Username</th>
-<th>Email</th>
-<th>Address</th>
-<th>Password</th>
-<th>Postcode</th>
-<th>Phonenumber</th>
-<th>User-Type</th>
-</tr>";
+  <body>
+	<!-- logged in user information -->
+    <h4 style="text-align:center; text-decoration-style: solid; background: darkgrey; color: white; margin-bottom:20px;">Welcome back, <?=$_SESSION['user']['username']?>!
+    <small><i  style="color: white;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i><br></small></h4>
+	  <?php
+      $con=mysqli_connect('localhost', 'root', '', 'phplogin');
+      // Check connection
+      if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      }
+     $users = mysqli_query($con,"SELECT * FROM users");
+		 echo "<h5 style='color:darkred; text-align:center;'>Users:</h5>";
+		 echo "<table border='1'  style='margin-left:auto; margin-right:auto;' >
+		 <tr>
+		 <th>Username</th>
+		 <th>Email</th>
+		 <th>Address</th>
+		 <th>Password</th>
+		 <th>Postcode</th>
+		 <th>Phonenumber</th>
+		 <th>User-Type</th>
+		 </tr>";
 
 
-while($row = mysqli_fetch_array($users))
-{
-echo "<tr>";
-echo "<td>" . $row['username'] . "</td>";
-echo "<td>" . $row['email'] . "</td>";
-echo "<td>" . $row['address'] . "</td>";
-echo "<td>" . $row['password'] . "</td>";
-echo "<td>" . $row['postcode'] . "</td>";
-echo "<td>" . $row['phonenumber'] . "</td>";
-echo "<td>" . $row['user_type'] . "</td>";
+		 while($row = mysqli_fetch_array($users)) {
+			 echo "<tr>";
+			 echo "<td>" . $row['username'] . "</td>";
+			 echo "<td>" . $row['email'] . "</td>";
+			 echo "<td>" . $row['address'] . "</td>";
+			 echo "<td>" . $row['password'] . "</td>";
+			 echo "<td>" . $row['postcode'] . "</td>";
+			 echo "<td>" . $row['phonenumber'] . "</td>";
+			 echo "<td>" . $row['user_type'] . "</td>";
+			 echo "</tr>";
+		 }
 
 
-echo "</tr>";
-}
+		 echo "</table>";
+		 echo "<div style='text-align: center; margin-top:10px; margin-bottom:40px;'>";
+		 echo "<a href='create_user.php'> + Add User</a>";
+		 echo "</div>";
 
-echo "</table>";
-echo "<div style='text-align: center; margin-top:10px; margin-bottom:40px;'>";
-echo "<a href='create_user.php'> + Add User</a>";
-echo "</div>";
+		 $products = mysqli_query($con,"SELECT * FROM productsfyp");
+		 echo "<h5 style='color:darkred; text-align:center;'>Products:</h5>";
+		 echo "<table border='1' style=' margin-left:auto; margin-right:auto;' >
+		 <tr>
+		 <th>ProductId</th>
+		 <th>Name</th>
+		 <th  style='padding-right:235px;'>Description</th>
+		 <th>Price</th>
+		 <th>Quantity</th>
+		 <th>Image</th>
+		 <th style='padding-right:50px;'>Date added</th>
+		 </tr>";
 
-$products = mysqli_query($con,"SELECT * FROM productsfyp");
-
-echo "<h5 style='color:darkred; text-align:center;'>Products:</h5>";
-echo "<table border='1' style=' margin-left:auto; margin-right:auto;' >
-<tr>
-<th>ProductId</th>
-<th>Name</th>
-<th  style='padding-right:235px;'>Description</th>
-<th>Price</th>
-<th>Quantity</th>
-<th>Image</th>
-<th style='padding-right:50px;'>Date added</th>
-</tr>";
-
-
-while($row = mysqli_fetch_array($products))
-{
-echo "<tr>";
-echo "<td>" . $row['id'] . "</td>";
-echo "<td>" . $row['name'] . "</td>";
-echo "<td>" . substr($row['desc'], 0, 50). "<p>...</p></td>";
-echo "<td>" . $row['price'] . "</td>";
-echo "<td>" . $row['quantity'] . "</td>";
-echo "<td>" . $row['img'] . "</td>";
-echo "<td>" . $row['date_added'] . "</td>";
-echo "</tr>";
-}
-echo "</table>";
-echo "<div style='text-align: center; margin-top:10px; margin-bottom:40px;'>";
-echo "<a href='create-product.php'> + Add Product</a>";
-echo "</div>";
-mysqli_close($con);
-?>
-</body>
+		 while($row = mysqli_fetch_array($products)) {
+			 echo "<tr>";
+			 echo "<td>" . $row['id'] . "</td>";
+			 echo "<td>" . $row['name'] . "</td>";
+			 echo "<td>" . substr($row['desc'], 0, 50). "<p>...</p></td>";
+			 echo "<td>" . $row['price'] . "</td>";
+			 echo "<td>" . $row['quantity'] . "</td>";
+			 echo "<td>" . $row['img'] . "</td>";
+			 echo "<td>" . $row['date_added'] . "</td>";
+			 echo "</tr>";
+			 }
+			 echo "</table>";
+			 echo "<div style='text-align: center; margin-top:10px; margin-bottom:40px;'>";
+			 echo "<a href='create-product.php'> + Add Product</a>";
+			 echo "</div>";
+			 mysqli_close($con);
+		 ?>
+  </body>
 </html>

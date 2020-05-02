@@ -200,7 +200,6 @@ echo <<<EOT
 	<head>
 	 <meta charset="utf-8">
 	 <title>Genuine Shop</title>
-
 	 <link rel="stylesheet" type="text/css" href="../styles/styless.css">
 		<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
 	 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
@@ -244,16 +243,13 @@ EOT;
 // Template footer
 function template_footer() {
 echo <<<EOT
-
 <section class="footer">
 <div class="container text-center">
   <div class="row">
       <div class="col-md-3">
           <h1>Useful Links</h1>
           <a href="PrivacyPolicy.php" style="color:white"><p>Privacy Policy</p></a>
-
           <a href="ReturnPolicy.php" style="color:white"><p>Return Policy</p></a>
-
         </div>
       <div class="col-md-3">
             <h1>Company</h1>
@@ -266,11 +262,8 @@ echo <<<EOT
               <a href="https://instagram.com/" style="color:white"><p><i class=" fa fa-instagram "></i> Instagram</p></a>
               <a href="https://www.twitter.com/" style="color:white"><p><i class=" fa fa-twitter"></i> Twitter</p></a>
             </div>
-
     </div>
 </div>
-
 </section>
-
 EOT;
 }

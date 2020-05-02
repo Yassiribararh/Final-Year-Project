@@ -7,10 +7,9 @@ if (!isLoggedIn()) {
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
-	 <meta charset="utf-8">
-	 <title>Genuine Shop</title>
-
+  <head>
+	  <meta charset="utf-8">
+	  <title>Genuine Shop</title>
 	  <link rel="stylesheet" type="text/css" href="../styles/Styles.css">
 		<link rel="stylesheet" type="text/css" href="../styles/styless.css">
 	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
@@ -19,11 +18,11 @@ if (!isLoggedIn()) {
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 	  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	   <!-- Including our scripting file. -->
+	  <!-- Including our scripting file. -->
 	  <script type="text/javascript" src="script.js"></script>
 	</head>
-	<div class="top-nav-bar">
-		<div class="search-box">
+  <div class="top-nav-bar">
+	  <div class="search-box">
 			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
 			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
       <a href="home.php"><img src="../imgs/myLogo1.jpg" class ="myLogo"></a>
@@ -63,15 +62,13 @@ if (!isLoggedIn()) {
 			Uses of the sport supplements
 		  can vary from muscle size increase, fast recovery, extra energy before a physical exercise, better health for the body etc...<br />
 		  The industry of sport nutrition is growing rapidly and making big profits of their products.<br />
-
 		  Different categories of supplements are sold in the markets nowadays to help everyone achieve whatever they need in their healthy lifestyle.<br />
 			These supplements can be in different forms (capsules, powder, energy bars...)<br />
 	    <br />
 	  </p>
 	</div>
   </section>
-
-<!-------------Footer---------->
+  <!-------------Footer---------->
   <section class="footer">
 		<div class="container text-center">
 	    <div class="row">
