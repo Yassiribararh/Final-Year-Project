@@ -1,8 +1,15 @@
 <?php
 include('../functions/functions.php');
-if (!isLoggedIn()) {
+
+if (!isAdmin()) {
 	$_SESSION['msg'] = "You must log in first";
-	header('location: login.php');
+	header('location: ../php/login.php');
+}
+
+if (isset($_GET['logout'])) {
+	session_destroy();
+	unset($_SESSION['user']);
+	header("location: ../php/login.php");
 }
 
 $DATABASE_HOST = 'localhost';
@@ -14,20 +21,42 @@ if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 // We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = $con->prepare('SELECT password, email, address, postcode, phonenumber FROM users WHERE id = ?');
+$stmt = $con->prepare('SELECT password, email, address, postcode, phonenumber, user_type FROM users WHERE id = ?');
 // In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($password, $email, $address, $postcode, $phonenumber);
+$stmt->bind_result($password, $email, $address, $postcode, $phonenumber, $user_type);
 $stmt->fetch();
 $stmt->close();
 
 ?>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.head {
+  background-color: darkred;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 
 <!DOCTYPE html>
 <html>
 	<head>
-	  <meta charset="utf-8">
+		<meta charset="utf-8">
 		<title>Genuine Shop</title>
 		<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
     <link rel="stylesheet" type="text/css" href="../styles/styless.css">
@@ -38,20 +67,18 @@ $stmt->close();
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <!-- Including our scripting file. -->
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="../scripts/script.js"></script>
   </head>
 	<div class="top-nav-bar">
 		<div class="search-box">
 			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
 			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
       <a href="home.php"><img src="../imgs/admin_profile.png" class ="myLogo"></a>
-			<h2><br/>Admin - Profile Page</h2>
+			<h2><br/>Admin - Home Page</h2>
     </div>
     <div class="menu-bar">
 			<ul>
-				<li><a href="home.php"> Users</a></li>
-				<li><a href="transactions.php"> Transactions</a></li>
-				<li><a href="products.php">Products</a>
+				<li><a href="admin-profile.php"><i class="fas fa-user-circle"></i> Profile</a>
 				<li><a href="home.php?logout='1'"><i class="fas fa-sign-out-alt"></i> Logout</li></a>
       </ul>
     </div>
@@ -61,38 +88,6 @@ $stmt->close();
       </ul>
     </div>
   </div>
-	<body>
-	  <div class="content">
-		  <h2>Profile Details</h2>
-		<div>
-		<p>Your account details are below:</p>
-		<table>
-			<?php  if (isset($_SESSION['user'])) : ?>
-				<img src="../imgs/admin_profile.png" style="width: 10%" >
-				<h4><?php echo $_SESSION['user']['username']; ?></h4>
-				<h4>(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</h4>
-				<br>
-			<?php endif ?>
-			<tr>
-				<td>Username:</td>
-				<td><?=$_SESSION['user']['username']?></td>
-			</tr>
-			<tr>
-			  <td>Email:</td>
-				<td><?=$_SESSION['user']['email']?></td>
-			</tr>
-			<tr>
-				<td>Address:</td>
-				<td><?=$_SESSION['user']['address']?></td>
-			</tr>
-			<tr>
-				<td>Postcode:</td>
-				<td><?=$_SESSION['user']['postcode']?></td>
-			</tr>
-			<tr>
-				<td>Phone Number:</td>
-				<td><?=$_SESSION['user']['phonenumber']?></td>
-			</tr>
-		</table>
-	</div>
-</div>
+  <body>
+
+  

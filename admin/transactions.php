@@ -20,14 +20,6 @@ $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
-// We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = $con->prepare('SELECT password, email, address, postcode, phonenumber, user_type FROM users WHERE id = ?');
-// In this case we can use the account ID to get the account info.
-$stmt->bind_param('i', $_SESSION['id']);
-$stmt->execute();
-$stmt->bind_result($password, $email, $address, $postcode, $phonenumber, $user_type);
-$stmt->fetch();
-$stmt->close();
 
 ?>
 <style>
@@ -74,62 +66,54 @@ tr:nth-child(even) {
 			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
 			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
       <a href="home.php"><img src="../imgs/admin_profile.png" class ="myLogo"></a>
-			<h2><br/>Admin - Users Page</h2>
+			<h2><br/>Admin - transactions Page</h2>
     </div>
     <div class="menu-bar">
 			<ul>
+        <li><a href="home.php"> Users</a></li>
 				<li><a href="products.php"> Products</a></li>
-				<li><a href="transactions.php"> Transactions</a></li>
-				<li><a href="admin-profile.php"><i class="fas fa-user-circle"></i> Profile</li></a>
+				<li><a href="admin-profile.php"><i class="fas fa-user-circle"></i> Profile</a>
 				<li><a href="home.php?logout='1'"><i class="fas fa-sign-out-alt"></i> Logout</li></a>
       </ul>
     </div>
-    <div style="width: 700px;margin-top:-25px; auto; margin-left:100px; cursor:pointer; width: 48%;">
+    <div style="width: 700px;margin-top:-25px; margin-left:100px; cursor:pointer; width: 48%;">
       <ul style=" list-style-type: none; ">
         <li style=" list-style-type: none;"><div id="display" style="border:solid 0 #BDC7D8;display:none; "></div></li>
       </ul>
     </div>
   </div>
   <body>
-	<!-- logged in user information -->
-    <h4 style="text-align:center; text-decoration-style: solid; background: darkgrey; color: white; margin-bottom:20px;">Welcome back, <?=$_SESSION['user']['username']?>!
-    <small><i  style="color: white;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i><br></small></h4>
-		<?php
-			$con=mysqli_connect('localhost', 'root', '', 'phplogin');
-			// Check connection
-			if (mysqli_connect_errno()) {
-				echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			}
-		 $users = mysqli_query($con,"SELECT * FROM users");
-		echo "<h5 style='color:darkred; text-align:center;'>Users:</h5>";
-		echo "<table border='1'  style='margin-left:auto; margin-right:auto;' >
-		<tr>
-		<th>Username</th>
-		<th>Email</th>
-		<th>Address</th>
-		<th>Password</th>
-		<th>Postcode</th>
-		<th>Phonenumber</th>
-		<th>User-Type</th>
-		</tr>";
+    <?php
+     $transactions = mysqli_query($con,"SELECT * FROM transactions");
+     echo "<h5 style='color:darkred; text-align:center; margin-top:50px;'>Transactions:</h5>";
+     echo "<table border='1' style=' margin-left:auto; margin-right:auto;' >
+     <tr>
+     <th>transaction Id</th>
+     <th>Payment Amount</th>
+     <th>Payment Method</th>
+     <th>Date of payement</th>
+     <th>Cutomer Email</th>
+     <th>Cutomer Full Name</th>
+     <th>Cutomer Address</th>
+     <th>Cutomer Phone Number</th>
+     <th>Cutomer Postcode</th>
+     </tr>";
 
-
-		while($row = mysqli_fetch_array($users)) {
-			echo "<tr>";
-			echo "<td>" . $row['username'] . "</td>";
-			echo "<td>" . $row['email'] . "</td>";
-			echo "<td>" . $row['address'] . "</td>";
-			echo "<td>" . $row['password'] . "</td>";
-			echo "<td>" . $row['postcode'] . "</td>";
-			echo "<td>" . $row['phonenumber'] . "</td>";
-			echo "<td>" . $row['user_type'] . "</td>";
-			echo "</tr>";
-		}
-
-		echo "</table>";
-		echo "<div style='text-align: center; margin-top:10px; margin-bottom:40px;'>";
-		echo "<a href='create_user.php'> + Add User</a>";
-		echo "</div>";
-	?>
-  </body>
-</html>
+     while($row = mysqli_fetch_array($transactions)) {
+       echo "<tr>";
+       echo "<td>" . $row['id'] . "</td>";
+       echo "<td>" . $row['payment_amount'] . "</td>";
+       echo "<td>" . $row['payment_status'] . "</td>";
+       echo "<td>" . $row['created'] . "</td>";
+       echo "<td>" . $row['payer_email'] . "</td>";
+       echo "<td>" . $row['fullname'] . "</td>";
+       echo "<td>" . $row['payer_address'] . "</td>";
+       echo "<td>" . $row['payer_phone'] . "</td>";
+       echo "<td>" . $row['payer_postcode'] . "</td>";
+       echo "</tr>";
+       }
+       echo "</table>";
+       echo "<div style='text-align: center; margin-top:10px; margin-bottom:40px;'>";
+       echo "</div>";
+       mysqli_close($con);
+     ?>

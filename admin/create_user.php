@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>Create user</title>
-	<link rel="stylesheet" type="text/css" href="../stylelogin.css">
+	<link rel="stylesheet" type="text/css" href="../styles/stylelogin.css">
 </head>
 <body>
 	<div class="header">

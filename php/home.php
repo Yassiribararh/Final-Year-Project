@@ -35,15 +35,28 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		<div id="slider" class="carousel slide carousel-fade" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="http://www.prontoitservices.com.au/wp-content/uploads/2016/07/shoponline.jpg" class="d-block w-100"alt="..." >
+					<img src="../imgs/shoponline.jpg" class="d-block w-100"alt="..." style="height:400px;">
 				</div>
-				<!-------------i might add some more images to slider---------->
+				<div class="carousel-item">
+					<img src="../imgs/shoponline1.png" class="d-block w-100"alt="..."style="height:400px;" >
+				</div>
+				<div class="carousel-item">
+					<img src="../imgs/shoponline2.jpg" class="d-block w-100"alt="..." style="height:400px;">
+				</div>
+				<div class="carousel-item">
+					<img src="../imgs/shoponline3.jpg" class="d-block w-100"alt="..." style="height:400px;">
+				</div>
+				<div class="carousel-item">
+					<img src="../imgs/shoponline4.png" class="d-block w-100"alt="..." style="height:400px;">
+				</div>
 			</div>
-			<!--- <ol class="carousel-indicators">
+			<ol class="carousel-indicators">
 			<li data-target="#slider" data-slide-to="0" class="active"></li>
 			<li data-target="#slider" data-slide-to="1"></li>
 			<li data-target="#slider" data-slide-to="2"></li>
-			</ol> ---->
+			<li data-target="#slider" data-slide-to="3"></li>
+			<li data-target="#slider" data-slide-to="4"></li>
+			</ol>
 		</div>
 	</div>
 </section>

@@ -81,7 +81,7 @@ color: white;
 
 .menu-bar
 {
-width: 40%;
+width: 60%;
 height: 60px;
 float: right;
 
@@ -92,7 +92,6 @@ float: right;
 {
 display: inline-flex;
 float: right;
-margin-left: 20px;
 }
 
 .menu-bar ul li
