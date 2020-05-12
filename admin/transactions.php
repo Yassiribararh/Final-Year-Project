@@ -104,7 +104,7 @@ tr:nth-child(even) {
        echo "<td>" . $row['id'] . "</td>";
        echo "<td>" . $row['payment_amount'] . "</td>";
        echo "<td>" . $row['payment_status'] . "</td>";
-       echo "<td>" . $row['created'] . "</td>";
+       echo "<td>" . $row['date-of-order'] . "</td>";
        echo "<td>" . $row['payer_email'] . "</td>";
        echo "<td>" . $row['fullname'] . "</td>";
        echo "<td>" . $row['payer_address'] . "</td>";

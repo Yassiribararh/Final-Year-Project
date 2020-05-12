@@ -11,6 +11,11 @@ $stmt->execute();
 $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+<div class="search-box" style="background-color:grey;">
+	<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
+	<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
+</div>
+
 <?=template_header('Home')?>
 
 
@@ -35,19 +40,19 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		<div id="slider" class="carousel slide carousel-fade" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="../imgs/shoponline.jpg" class="d-block w-100"alt="..." style="height:400px;">
+					<img src="../imgs/shoponline.jpg" class="d-block w-100"alt="..." style="height:405px;">
 				</div>
 				<div class="carousel-item">
-					<img src="../imgs/shoponline1.png" class="d-block w-100"alt="..."style="height:400px;" >
+					<img src="../imgs/shoponline1.png" class="d-block w-100"alt="..."style="height:405px;" >
 				</div>
 				<div class="carousel-item">
-					<img src="../imgs/shoponline2.jpg" class="d-block w-100"alt="..." style="height:400px;">
+					<img src="../imgs/shoponline2.jpg" class="d-block w-100"alt="..." style="height:405px;">
 				</div>
 				<div class="carousel-item">
-					<img src="../imgs/shoponline3.jpg" class="d-block w-100"alt="..." style="height:400px;">
+					<img src="../imgs/shoponline3.jpg" class="d-block w-100"alt="..." style="height:405px;">
 				</div>
 				<div class="carousel-item">
-					<img src="../imgs/shoponline4.png" class="d-block w-100"alt="..." style="height:400px;">
+					<img src="../imgs/shoponline4.png" class="d-block w-100"alt="..." style="height:405px;">
 				</div>
 			</div>
 			<ol class="carousel-indicators">
@@ -63,7 +68,7 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!-------------New Products---------->
 <section class="New-products">
 	<div class="container" >
-		 <div class="title-box" style="margin-top:100px;" >
+		 <div class="title-box" style="margin-top:50px;" >
 				 <h2 >On Sale</h2>
 		 </div>
 		 <div class="row">
@@ -95,4 +100,20 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	</div>
 </div>
 </section>
+<!-------------OpenAndCloseSideMenu---------->
+	<script>
+	function openmenu()
+	{
+				document.getElementById("side-menu").style.display="block";
+	document.getElementById("menu-btn").style.display="none";
+	document.getElementById("close-btn").style.display="block";
+				 }
+	 function closemenu()
+	{
+				document.getElementById("side-menu").style.display="none";
+	document.getElementById("menu-btn").style.display="block";
+	document.getElementById("close-btn").style.display="none";
+				 }
+
+	</script>
 <?=template_footer()?>

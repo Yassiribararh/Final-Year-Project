@@ -5,6 +5,54 @@ if (!isLoggedIn()) {
 	header('location: login.php');
 }
 ?>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.head {
+  background-color: darkred;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.input-group {
+	margin: 10px 0px 10px 0px;
+}
+.input-group label {
+	display: block;
+	text-align: left;
+	margin: 3px;
+
+}
+.input-group input {
+	height: 30px;
+	width: 93%;
+	padding: 5px 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid gray;
+}
+.cash{
+	width: 40%;
+	margin: 0px auto;
+	padding: 20px;
+	border: 1px solid #B0C4DE;
+	background: white;
+	border-radius: 0px 0px 10px 10px;
+}
+</style>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -48,21 +96,57 @@ if (!isLoggedIn()) {
     </div>
   </div>
 	<!-------------Product Description---------->
-	<section class="product-description">
-		<div class="container">
-			<h3>Contact  </h3>
+	<section class="product-description" style="text-align: center; margin-bottom:0;">
+		<div class="container"style="text-align: center; margin-bottom:0;">
+			<h3 style="text-align: center; margin-bottom:0;">Contact Details </h3>
 			<p>Email: Yassiribararh@gmail.com<br />
 				 Phone Number: +447763431236 <br />
 				 Adress: 53 Dunton Street, <br />LE3 5EL, <br />  Leicester, <br />Leicestershire, <br /> England, Uk<br />
-				 <br />
-				 <br />
-				 <br />
-				 <br />
-				 <br />
-				 <br />
 			</p>
 		</div>
-	</section>
+		<form method="post" action="contact.php">
+			<table style="margin: auto;" >
+				<thead>
+					<tr>
+						<td colspan="2" class="head"><h5>Or Leave Us a message: </h5></td>
+					</tr>
+				</thead>
+				<tbody >
+					<tr>
+						<td colspan="5" style="margin: auto;" class="cash">
+							<div class="input-group" >
+								<label>Full Name:</label>
+								<input type="text" name="fullname">
+							</div>
+							<div class="input-group">
+								<label>Email:</label>
+								<input type="email" name="payer_email">
+							</div>
+							<div class="input-group">
+								<label>Postcode</label>
+								<input type="text" name="postcode">
+							</div>
+							<div class="input-group">
+								<label>Address</label>
+								<input type="text" name="payer_address">
+							</div>
+							<div class="input-group">
+								<label>Phone Number</label>
+								<input type="text" name="phonenumber">
+							</div>
+							<div class="input-group">
+								<label>Message</label>
+								<input type="textarea" name="" style="padding-bottom:50px;">
+							</div>
+							<div class="input-group">
+								<button type="submit" class="button" name="pay-cash" style="margin:auto;">Submit</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+  </section>
 	<!-------------Footer---------->
 	<section class="footer">
 		<div class="container text-center">

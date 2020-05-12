@@ -84,7 +84,7 @@ color: white;
 width: 60%;
 height: 60px;
 float: right;
-
+margin-top: -80px;
 }
 
 
@@ -132,6 +132,7 @@ text-decoration: none;
     .menu-bar
     {
      width: 100%;
+     margin-top: 0;
     }
     .menu-bar ul
     {
@@ -149,7 +150,7 @@ text-decoration: none;
 .side-menu
 {
 margin-top: 0px;
-height: 79%;
+height: 59%;
 width: 15%;
 font-size: 15px;
 float: left;
@@ -227,6 +228,7 @@ display: none;
     position: fixed;
     font-size:12px;
     background: grey;
+    display: none;
     }
 
     .side-menu ul li ul

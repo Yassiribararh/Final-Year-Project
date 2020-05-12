@@ -199,8 +199,8 @@ global $product;
   $productquantity  =  $product['quantity'];
 
   $query = "INSERT INTO transactions (fullname, payer_email, payer_address, payment_status, payer_phone,
-                                    	payer_postcode, created, payment_amount)
-        VALUES('$fullname', '$email', '$address', 'Cash-payement', '$phonenumber', '$postcode', '$date', '$subtotal')";
+                                    	payer_postcode, payment_amount)
+        VALUES('$fullname', '$email', '$address', 'Cash-payement', '$phonenumber', '$postcode', '$subtotal')";
   mysqli_query($database, $query);
   header('Location: index.php?page=placeorder');
 }
@@ -370,11 +370,7 @@ tr:nth-child(even) {
           	</div>
             <div class="input-group">
           		<label>Subtotal</label>
-          		<input type="text" name="subtotal" readonly="readonly" value="<?=$subtotal?>">
-          	</div>
-            <div class="input-group">
-              <label>Order Date:</label>
-              <input name="todaydate" type="text" placeholder="DD-MM-YYYY">
+          		<input type="text" name="subtotal" readonly="readonly" value="$<?=$subtotal?> (In American Dollars!)">
           	</div>
             <div class="input-group">
           		<button type="submit" class="button" name="pay-cash" style="margin:auto;">Submit</button>

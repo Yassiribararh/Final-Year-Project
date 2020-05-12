@@ -213,8 +213,7 @@ echo <<<EOT
 	</head>
 	<div class="top-nav-bar">
 		<div class="search-box">
-			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
-			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
+			
       <a href="home.php"><img src="../imgs/myLogo1.jpg" class ="myLogo"></a>
       <form class="search-box" method="POST" action="Search_results.php">
         <input type="text" class="form-control" id="search" placeholder="Search here..." name="keyword" required="required"/>
@@ -265,5 +264,6 @@ echo <<<EOT
     </div>
 </div>
 </section>
+
 EOT;
 }
