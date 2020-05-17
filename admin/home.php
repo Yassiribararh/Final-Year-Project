@@ -273,9 +273,10 @@ tr:nth-child(even) {
 					 <h2>Popular products:</h2>
 				 </div>
 				 <div class="row">
-			 <!---Listing all last products created limit is 11-->
-			 <?php foreach($db->query('SELECT product_id, product_img, COUNT(product_id)
-			 FROM orders GROUP BY product_id DESC LIMIT 4') as $row) { ?>
+			   <!---Listing all last products created limit is 11-->
+			   <?php
+			   foreach($db->query('SELECT product_id, product_img, COUNT(product_id)
+			   FROM orders GROUP BY product_id ORDER BY COUNT(product_id) DESC LIMIT 4') as $row) { ?>
 				 <div class="col-md-3" style="border-style: dashed;">
 					 <div class="product-top">
 						 <img src="../imgs/<?=$row['product_img']?>" width="200" height="200" alt="">
