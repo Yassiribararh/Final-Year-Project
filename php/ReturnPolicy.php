@@ -12,7 +12,6 @@ if (!isLoggedIn()) {
 	  <meta charset="utf-8">
 	  <title>Genuine Shop</title>
 	  <link rel="stylesheet" type="text/css" href="../styles/Styles.css">
-		<link rel="stylesheet" type="text/css" href="../styles/styless.css">
 	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
 	  <Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -49,10 +48,10 @@ if (!isLoggedIn()) {
     </div>
   </div>
   <!-------------Product Description---------->
-	<section class="product-description">
-    <div class="container">
+	<section class="product-description" >
+    <div class="container" style="height:300px;">
 			<h3>Generic refund policy </h3>
-			<p>Thanks for purchasing our products at [website] operated by [name].<br />
+			<p>Thanks for purchasing our products at Genuine Shop operated by YASSIR IBARARH.<br />
 				 In order to be eligible for a refund, you have to return the product within 30 calendar days of your purchase.<br />
 				 The product must be in the same condition that you receive it and undamaged in any way.<br />
 				 After we receive your item, our team of professionals will inspect it and process your refund.<br />

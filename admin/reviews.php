@@ -20,14 +20,6 @@ $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_
 if (mysqli_connect_errno()) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
-// We don't have the password or email info stored in sessions so instead we can get the results from the database.
-$stmt = $con->prepare('SELECT password, email, address, postcode, phonenumber, user_type FROM users WHERE id = ?');
-// In this case we can use the account ID to get the account info.
-$stmt->bind_param('i', $_SESSION['id']);
-$stmt->execute();
-$stmt->bind_result($password, $email, $address, $postcode, $phonenumber, $user_type);
-$stmt->fetch();
-$stmt->close();
 
 ?>
 <style>
@@ -73,7 +65,7 @@ tr:nth-child(even) {
 			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
 			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
       <a href="home.php"><img src="../imgs/admin_profile.png" class ="myLogo"></a>
-			<h2><br/>Admin - Home Page</h2>
+			<h2><br/>Admin - Reviews Page</h2>
     </div>
     <div class="menu-bar">
 			<ul>
@@ -81,47 +73,34 @@ tr:nth-child(even) {
 				<li><a href="home.php?logout='1'"><i class="fas fa-sign-out-alt"></i> Logout</li></a>
       </ul>
     </div>
-    <div style="width: 700px;margin-top:-25px; auto; margin-left:100px; cursor:pointer; width: 48%;">
+    <div style="width: 700px;margin-top:-25px; margin-left:100px; cursor:pointer; width: 48%;">
       <ul style=" list-style-type: none; ">
         <li style=" list-style-type: none;"><div id="display" style="border:solid 0 #BDC7D8;display:none; "></div></li>
       </ul>
     </div>
   </div>
   <body>
-		<?php
-			$con=mysqli_connect('localhost', 'root', '', 'phplogin');
-			// Check connection
-			if (mysqli_connect_errno()) {
-				echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			}
-		 $users = mysqli_query($con,"SELECT * FROM users");
-		echo "<h5 style='color:darkred; text-align:center;'>Users:</h5>";
-		echo "<table border='1'  style='margin-left:auto; margin-right:auto;' >
-		<tr>
-		<th>Username</th>
-		<th>Email</th>
-		<th>Address</th>
-		<th>Password</th>
-		<th>Postcode</th>
-		<th>Phonenumber</th>
-		<th>User-Type</th>
-		</tr>";
+    <?php
+     $reviews = mysqli_query($con,"SELECT * FROM reviews");
+     echo "<h5 style='color:darkred; text-align:center; margin-top:50px;'>Reviews:</h5>";
+     echo "<table border='1' style=' margin-left:auto; margin-right:auto;' >
+     <tr>
+     <th>Review Id</th>
+     <th>User Name</th>
+     <th>Review</th>
+     <th>Date submitted</th>
+     </tr>";
 
-
-		while($row = mysqli_fetch_array($users)) {
-			echo "<tr>";
-			echo "<td>" . $row['username'] . "</td>";
-			echo "<td>" . $row['email'] . "</td>";
-			echo "<td>" . $row['address'] . "</td>";
-			echo "<td>" . $row['password'] . "</td>";
-			echo "<td>" . $row['postcode'] . "</td>";
-			echo "<td>" . $row['phonenumber'] . "</td>";
-			echo "<td>" . $row['user_type'] . "</td>";
-			echo "</tr>";
-		}
-
-		echo "</table>";
-		echo "<div style='text-align: center; margin-top:10px; margin-bottom:40px;'>";
-		echo "<a href='create_user.php'> + Add User</a>";
-		echo "</div>";
-	?>
+     while($row = mysqli_fetch_array($reviews)) {
+       echo "<tr>";
+       echo "<td>" . $row['review_id'] . "</td>";
+       echo "<td>" . $row['review_name'] . "</td>";
+       echo "<td>" . $row['review_message'] . "</td>";
+       echo "<td>" . $row['review_date'] . "</td>";
+       echo "</tr>";
+       }
+       echo "</table>";
+       echo "<div style='text-align: center; margin-top:10px; margin-bottom:40px;'>";
+       echo "</div>";
+       mysqli_close($con);
+     ?>

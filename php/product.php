@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
           </div>
         </div>
       </div>
-      <!-------------Product price/condition...---------->
+      <!--Product price/condition..-->
       <form action="index.php?page=cart" method="post" >
         <div class="col-md-7" >
           <p class="new-arrival text-center">NEW</p>
@@ -62,7 +62,7 @@ if (isset($_GET['id'])) {
         </form>
       </div>
     </section>
-    <!-------------Product Description---------->
+    <!--Product Description-->
     <section class="product-description">
       <div class="container">
         <h3>Product Description: </h3>

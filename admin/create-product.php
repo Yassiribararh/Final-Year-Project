@@ -1,24 +1,27 @@
 <?php
-if (isset($_POST['create_product_btn'])) {
+if (isset($_POST['create_new_product'])) {
 	addnewproduct();
 }
 
 function addnewproduct(){
-$database = mysqli_connect('localhost', 'root', '', 'phplogin');
+$dB = mysqli_connect('localhost', 'root', '', 'phplogin');
 
-	$productname    =  $_POST['productname'];
-	$productdesc       =  $_POST['description'];
+	$productname    =  $_POST['name'];
+	$productdesc       =  $_POST['descr'];
 	$productprice       =  $_POST['price'];
 	$productquantity  =  $_POST['quantity'];
 	$productimg  =  $_POST['img'];
 
 
-  $query = "INSERT INTO productsfyp (name, desc, price, quantity, img)
-        VALUES('$productname','$productdesc','$productprice','$productquantity','$productimg')";
-  mysqli_query($database, $query);
+  $sql = "INSERT INTO productsfyp (`desc`, name, price, quantity, img)
+	  VALUES('$productdesc','$productname',
+			 '$productprice', '$productquantity', '$productimg' )";
+  mysqli_query($dB, $sql);
+	echo '<h4 style="text-align:center; text-decoration-style: solid;
+		background: darkgrey; color: white; margin-bottom:0;">Product created successfully!</h4>';
 }
 ?>
-<?php include('../functions/functions.php') ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +32,15 @@ $database = mysqli_connect('localhost', 'root', '', 'phplogin');
 	<div class="header">
 		<h2>Admin - Create Product</h2>
 	</div>
-	
+
 	<form method="post" action="create-product.php">
 		<div class="input-group">
 			<label>Product Name</label>
-			<input type="text" name="productname">
+			<input type="text" name="name">
 		</div>
 		<div class="input-group">
 			<label>Price</label>
-			<input type="price" name="price">
+			<input type="number" name="price">
 		</div>
 		<div class="input-group">
 			<label>Quantity</label>
@@ -49,10 +52,10 @@ $database = mysqli_connect('localhost', 'root', '', 'phplogin');
 		</div>
     <div class="input-group">
 			<label>Product Description</label>
-			<input type="text" name="description"style="width: 95%">
+			<input type="text" name="descr">
 		</div>
 		<div class="input-group">
-			<button type="submit" class="btn" name="create_product_btn"> + Create Product</button>
+			<button type="submit" class="btn" name="create_new_product"> + Create Product</button>
 		</div>
 	</form>
 </body>

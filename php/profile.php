@@ -23,59 +23,55 @@ $stmt->fetch();
 $stmt->close();
 ?>
 
-<!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>Genuine Shop</title>
-	<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
-	<link rel="stylesheet" type="text/css" href="../styles/styless.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
-	<Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<!-- Including our scripting file. -->
-	<script type="text/javascript" src="../scripts/script.js"></script>
-</head>
-<div class="top-nav-bar">
-	<div class="search-box">
-		<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
-		<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
-		<a href="home.php"><img src="../imgs/myLogo1.jpg" class ="myLogo"></a>
-		<form class="search-box" method="POST" action="Search_results.php">
-			<input type="text" class="form-control" id="search" placeholder="Search here..." name="keyword" required="required"/>
-			<span class="input-group-btn">
-				<button class="input-group-text" name="search"><span ><i class="fa fa-search"></i></span></button>
-			</span>
-		</form>
-		<br />
+	<head>
+		<meta charset="utf-8">
+		<title>Genuine Shop</title>
+		<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
+		<Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<!-- Including the search scripting file. -->
+		<script type="text/javascript" src="../scripts/script.js"></script>
+	</head>
+	<div class="top-nav-bar">
+		<div class="search-box">
+			<i class="fa fa-bars" id="menu-btn" onclick="openmenu()"></i>
+			<i class="fa fa-times" id="close-btn" onclick="closemenu()"></i>
+			<a href="home.php"><img src="../imgs/myLogo1.jpg" class ="myLogo"></a>
+			<form class="search-box" method="POST" action="Search_results.php">
+				<input type="text" class="form-control" id="search" placeholder="Search here..." name="keyword" required="required"/>
+				<span class="input-group-btn">
+					<button class="input-group-text" name="search"><span ><i class="fa fa-search"></i></span></button>
+				</span>
+			</form>
+			<br />
+		</div>
+		<div class="menu-bar">
+			<ul>
+				<li><a href="index.php?page=cart"><i class="fa fa-shopping-basket "></i> cart</a> </li>
+				<li><a href="profile.php"><i class="fas fa-user-circle"></i> Profile</a>
+				<li><a href="home.php?logout='1'"><i class="fas fa-sign-out-alt"></i> Logout</li></a>
+			</ul>
+		</div>
+		<div style="width: 700px;margin-top:-25px; auto; margin-left:100px; cursor:pointer; width: 48%;">
+			<ul style=" list-style-type: none; ">
+				<li style=" list-style-type: none;"><div id="display" style="border:solid 0 #BDC7D8;display:none; "></div></li>
+			</ul>
+		</div>
 	</div>
-	<div class="menu-bar">
-		<ul>
-			<li><a href="index.php?page=cart"><i class="fa fa-shopping-basket "></i> cart</a> </li>
-			<li><a href="profile.php"><i class="fas fa-user-circle"></i> Profile</a>
-			<li><a href="home.php?logout='1'"><i class="fas fa-sign-out-alt"></i> Logout</li></a>
-		</ul>
-	</div>
-	<div style="width: 700px;margin-top:-25px; auto; margin-left:100px; cursor:pointer; width: 48%;">
-		<ul style=" list-style-type: none; ">
-			<li style=" list-style-type: none;"><div id="display" style="border:solid 0 #BDC7D8;display:none; "></div></li>
-		</ul>
-	</div>
-</div>
-<body>
-	<div class="content">
-		<h2>Profile Details</h2>
-		<div>
+	<div class="content" style="margin:auto;">
+		<h2 style="margin:auto;">Profile Details</h2>
+		<div style="text-align:center;">
 			<p>Your account details are below:</p>
-			<table>
+			<table style="margin:auto; text-align:left;">
 				<?php  if (isset($_SESSION['user'])) : ?>
-					<img src="../imgs/user_profile.png" style="width: 10%" >
+					<img src="../imgs/user_profile.png" style="width: 30%; margin:auto;" >
 					<h4><?php echo $_SESSION['user']['username']; ?></h4>
 					<h4>(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</h4>
-					<br>
 				<?php endif ?>
 				<tr>
 					<td>Username:</td>
@@ -122,4 +118,5 @@ $stmt->close();
 				</div>
 			</div>
 		</div>
-	</section>
+  </section>
+</html>

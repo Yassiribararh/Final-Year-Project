@@ -4,7 +4,32 @@ if (!isLoggedIn()) {
 	$_SESSION['msg'] = "You must log in first";
 	header('location: login.php');
 }
+
+if (isset($_POST['contact_us'])) {
+	addcontact();
+	header('location: Contact.php');
+}
+
+function addcontact(){
+$data = mysqli_connect('localhost', 'root', '', 'phplogin');
+
+	$fullname    =  $_POST['contact_name'];
+	$email       =  $_POST['contact_email'];
+	$address  =  $_POST['contact_address'];
+	$phonenumber  =  $_POST['contact_phone'];
+	$contactmessage  =  $_POST['contact_message'];
+
+
+  $query = "INSERT INTO contact (contact_name, contact_email, contact_address, contact_number, contact_message)
+            VALUES('$fullname', '$email', '$address', '$phonenumber', '$contactmessage')";
+  mysqli_query($data, $query);
+
+	echo '<h4 style="text-align:center; text-decoration-style: solid;
+	 background: darkgrey; color: white; margin-bottom:0;">Contact form submitted successfully!</h4>';
+
+}
 ?>
+
 <style>
 table {
   font-family: arial, sans-serif;
@@ -53,20 +78,19 @@ tr:nth-child(even) {
 	border-radius: 0px 0px 10px 10px;
 }
 </style>
-<!DOCTYPE html>
+
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>Genuine Shop</title>
 		<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
-    <link rel="stylesheet" type="text/css" href="../styles/styless.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
 		<Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <!-- Including our scripting file. -->
+    <!-- Including search scripting file. -->
     <script type="text/javascript" src="../scripts/script.js"></script>
   </head>
 	<div class="top-nav-bar">
@@ -95,7 +119,7 @@ tr:nth-child(even) {
       </ul>
     </div>
   </div>
-	<!-------------Product Description---------->
+
 	<section class="product-description" style="text-align: center; margin-bottom:0;">
 		<div class="container"style="text-align: center; margin-bottom:0;">
 			<h3 style="text-align: center; margin-bottom:0;">Contact Details </h3>
@@ -104,7 +128,7 @@ tr:nth-child(even) {
 				 Adress: 53 Dunton Street, <br />LE3 5EL, <br />  Leicester, <br />Leicestershire, <br /> England, Uk<br />
 			</p>
 		</div>
-		<form method="post" action="contact.php">
+		<form method="post" action="Contact.php">
 			<table style="margin: auto;" >
 				<thead>
 					<tr>
@@ -116,30 +140,26 @@ tr:nth-child(even) {
 						<td colspan="5" style="margin: auto;" class="cash">
 							<div class="input-group" >
 								<label>Full Name:</label>
-								<input type="text" name="fullname">
+								<input type="text" name="contact_name">
 							</div>
 							<div class="input-group">
 								<label>Email:</label>
-								<input type="email" name="payer_email">
-							</div>
-							<div class="input-group">
-								<label>Postcode</label>
-								<input type="text" name="postcode">
+								<input type="text" name="contact_email">
 							</div>
 							<div class="input-group">
 								<label>Address</label>
-								<input type="text" name="payer_address">
+								<input type="text" name="contact_address">
 							</div>
 							<div class="input-group">
 								<label>Phone Number</label>
-								<input type="text" name="phonenumber">
+								<input type="text" name="contact_phone">
 							</div>
 							<div class="input-group">
 								<label>Message</label>
-								<input type="textarea" name="" style="padding-bottom:50px;">
+								<input type="text" name="contact_message" style="padding-bottom:50px;">
 							</div>
 							<div class="input-group">
-								<button type="submit" class="button" name="pay-cash" style="margin:auto;">Submit</button>
+								<button type="submit" class="button" name="contact_us" style="margin:auto;">Submit</button>
 							</div>
 						</td>
 					</tr>
@@ -147,7 +167,7 @@ tr:nth-child(even) {
 			</table>
 		</form>
   </section>
-	<!-------------Footer---------->
+	<!--Footer-->
 	<section class="footer">
 		<div class="container text-center">
 			<div class="row">

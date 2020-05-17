@@ -1,7 +1,13 @@
 <?php
 
-//Including Database configuration file.
-include "db.php";
+
+//Database connection.
+$con = MySQLi_connect( "localhost","root", "", "phplogin");
+
+//Check connection
+if (MySQLi_connect_errno()) {
+   echo "Failed to connect to MySQL: " . MySQLi_connect_error();
+};
 
 //Getting value of "search" variable from "script.js".
 if (isset($_POST['search'])) {
@@ -9,13 +15,13 @@ if (isset($_POST['search'])) {
 //Search box value assigning to $Name variable.
    $Name = $_POST['search'];
 
-//Search query.
+// My SQL Search query.
    $Query = "SELECT name FROM productsfyp WHERE name LIKE '%$Name%' OR id LIKE '%$Name%' LIMIT 5";
 
 //Query execution
    $ExecQuery = MySQLi_query($con, $Query);
 
-//Creating unordered list to display the result.
+//Creating a UL to display the result.
    echo '
 <ul>
    ';
@@ -27,7 +33,6 @@ if (isset($_POST['search'])) {
    <!-- Creating unordered list items.
         Calling javascript function named as "fill" found in "script.js" file.
         By passing fetched result as a parameter. -->
-
    <li onclick='fill("<?php echo $Result['name']; ?>")'>
    <a>
 
@@ -35,7 +40,7 @@ if (isset($_POST['search'])) {
        <?php echo $Result['name']; ?>
    </li></a>
 
-   <!-- Below php code is just for closing parenthesis. Don't be confused. -->
+   <!-- Below code is just for closing parenthesis. -->
    <?php
 }}
 ?>

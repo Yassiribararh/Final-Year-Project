@@ -51,14 +51,13 @@ tr:nth-child(even) {
 		<meta charset="utf-8">
 		<title>Genuine Shop</title>
 		<link rel="stylesheet" type="text/css" href="../styles/Styles.css">
-    <link rel="stylesheet" type="text/css" href="../styles/styless.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
 		<Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <!-- Including our scripting file. -->
+    <!-- Including the search scripting file. -->
     <script type="text/javascript" src="../scripts/script.js"></script>
   </head>
 	<div class="top-nav-bar">
@@ -70,8 +69,6 @@ tr:nth-child(even) {
     </div>
     <div class="menu-bar">
 			<ul>
-        <li><a href="home.php"> Users</a></li>
-				<li><a href="transactions.php"> Transactions</a></li>
 				<li><a href="admin-profile.php"><i class="fas fa-user-circle"></i> Profile</a>
 				<li><a href="home.php?logout='1'"><i class="fas fa-sign-out-alt"></i> Logout</li></a>
       </ul>

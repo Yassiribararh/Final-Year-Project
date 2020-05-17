@@ -5,20 +5,63 @@ if (!isLoggedIn()) {
 	header('location: login.php');
 }
 ?>
-<!DOCTYPE html>
+<style>
+/*------------about page css----------*/
+.about-container{
+  width:50%;
+  margin: auto;
+	margin-top:20px;
+  display: block;
+  border-style: solid;
+}
+
+.location-image img{
+  width:100%;
+  height:60%;
+}
+
+.information-container{
+  width:100%;
+}
+
+.information {
+  display:grid;
+  background-color: lightgrey;
+  width: 100%;
+	text-align: center;
+	margin-bottom: 0;
+	list-style: none;
+}
+
+.information li:hover{
+  background-color: white;
+}
+
+.information li {
+  padding: 10px;
+}
+
+.information li a{
+  color: black;
+  cursor: auto;
+  text-decoration: none;
+}
+
+
+</style>
+
 <html>
   <head>
 	  <meta charset="utf-8">
 	  <title>Genuine Shop</title>
 	  <link rel="stylesheet" type="text/css" href="../styles/Styles.css">
-		<link rel="stylesheet" type="text/css" href="../styles/styless.css">
 	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" >
 	  <Link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 	  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	  <!-- Including our scripting file. -->
+	  <!-- Including the search scripting file. -->
 	  <script type="text/javascript" src="script.js"></script>
 	</head>
   <div class="top-nav-bar">
@@ -48,26 +91,25 @@ if (!isLoggedIn()) {
     </div>
   </div>
 
-
 	<!-------------Product Description---------->
-	<section class="product-description">
-  <div class="container">
-		<h3>About Us  </h3>
-    <p>  Food is the main fuel for the human body.<br />
-			Eating what your body desires does not always means eating good.<br />
-			On our daily nutrition, we need to consume a specific quantity of different vitamins, carbohydrates, calcium, proteins...<br />
-			to ensure a balanced diet and healthy lifestyle.<br />
-      Intense activities can cause damage to the body muscles.<br />
-			In order to repair these damages, Athletes tend to buy sport supplements more often to ensure that they get the required needs for their bodies.<br />
-			Uses of the sport supplements
-		  can vary from muscle size increase, fast recovery, extra energy before a physical exercise, better health for the body etc...<br />
-		  The industry of sport nutrition is growing rapidly and making big profits of their products.<br />
-		  Different categories of supplements are sold in the markets nowadays to help everyone achieve whatever they need in their healthy lifestyle.<br />
-			These supplements can be in different forms (capsules, powder, energy bars...)<br />
-	    <br />
-	  </p>
-	</div>
-  </section>
+	<div class="about-container">
+    <div class="location-image">
+      <img alt="" src="../imgs/myLogo1.jpg">
+    </div>
+    <div class="information-container" >
+      <ul class="information">
+        <li class="first"><a href="">Name: Yassir Ibararh</a></li>
+        <li><a href="">Email: P16224469@dmu.ac.uk</a></li>
+        <li><a href="">Address: 53 Dunton Street</a></li>
+        <li><a href="">City: Leicester</a></li>
+        <li><a href="">County: Leicestershire</a></li>
+        <li><a href="">Phone Number: +44-7763431236</a></li>
+        <li><a href="">University: De Montfort University</a></li>
+        <li><a href="">Study field: Computer Science</a></li>
+        <li><a href="">Created 18/05/2020.</a></li>
+      </ul>
+    </div>
+  </div>
   <!-------------Footer---------->
   <section class="footer">
 		<div class="container text-center">

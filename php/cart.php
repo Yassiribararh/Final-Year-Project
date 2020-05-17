@@ -1,10 +1,10 @@
 <?php
 // If the user clicked the add to cart button on the product page we can check for the form data
 if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['product_id']) && is_numeric($_POST['quantity'])) {
-    // Set the post variables so we easily identify them, also make sure they are integer
+    // Declaring variables
     $product_id = (int)$_POST['product_id'];
     $quantity = (int)$_POST['quantity'];
-    // Prepare the SQL statement, we basically are checking if the product exists in our databaser
+    // we basically are checking if the product exists in our database
     $stmt = $pdo->prepare('SELECT * FROM productsfyp WHERE id = ?');
     $stmt->execute([$_POST['product_id']]);
     // Fetch the product from the database and return the result as an Array
@@ -30,7 +30,7 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
     exit;
 }
 
-// Remove product from cart, check for the URL param "remove", this is the product id, make sure it's a number and check if it's in the cart
+// Remove product from cart, it will check for the URL param "remove", this is the product id, to make sure it's a number and check if it's in the cart
 if (isset($_GET['remove']) && is_numeric($_GET['remove']) && isset($_SESSION['cart']) && isset($_SESSION['cart'][$_GET['remove']])) {
     // Remove the product from the shopping cart
     unset($_SESSION['cart'][$_GET['remove']]);
@@ -79,25 +79,35 @@ if ($products_in_cart) {
     foreach ($products as $product) {
         $subtotal += (float)$product['price'] * (int)$products_in_cart[$product['id']];
     }
+
+    $id = $product['name'];
+    $img = $product['img'];
+    // connect to database
+    $paypal_method = "Paypal_Payment";
+    $db = mysqli_connect('localhost', 'root', '', 'phplogin');
+    // inserting values into orders table.
+    $query = "INSERT INTO orders (order_total, product_id, payement_method, product_img)
+    					  VALUES('$subtotal', '$id', '$paypal_method','$img')";
+    			mysqli_query($db, $query);
 }
 
-// For testing purposes set this to true, if set to true it will use paypal sandbox
+// For testing purposes we will only use paypal sandbox
 $testmode = true;
 $paypalurl = $testmode ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr';
 // If the user clicks the PayPal checkout button...
 if (isset($_POST['paypal']) && $products_in_cart && !empty($products_in_cart)) {
     // Variables we need to pass to paypal
-    // Make sure you have a business account and set the "business" variable to your paypal business account email
     $data = array(
         'cmd'			=> '_cart',
         'upload'        => '1',
         'lc'			=> 'EN',
-        'business' 		=> 'sb-43sjht1182017@business.example.com',
-        'cancel_return'	=> 'http://localhost/GenuineShop2.0/index.php?page=cart',
-        'notify_url'	=> 'http://localhost/GenuineShop2.0/index.php?page=cart&ipn_listener=paypal',
+        'business' 		=> 'yassiribararh@gmail.com',
+        'cancel_return'	=> 'http://localhost/Final-Year-Project/php/index.php?page=cart',
+        'notify_url'	=> 'http://localhost/Final-Year-Project/php/index.php?page=cart&ipn_listener=paypal',
         'currency_code'	=> 'USD',
-        'return'        => 'http://localhost/GenuineShop2.0/index.php?page=placeorder'
+        'return'        => 'http://localhost/Final-Year-Project/php/index.php?page=placeorder'
     );
+
     // Add all the products that are in the shopping cart to the data array variable
     for ($i = 0; $i < count($products); $i++) {
         $data['item_number_' . ($i+1)] = $products[$i]['id'];
@@ -111,76 +121,10 @@ if (isset($_POST['paypal']) && $products_in_cart && !empty($products_in_cart)) {
     exit;
 }
 
-// Below is the listener for paypal, make sure to set the IPN URL
-// (e.g. http://example.com/cart.php?ipn_listener=paypal) in your paypal account, this will not work on a local server
-if (isset($_GET['ipn_listener']) && $_GET['ipn_listener'] == 'paypal') {
-    // Get all input variables and convert them all to URL string variables
-    $raw_post_data = file_get_contents('php://input');
-    $raw_post_array = explode('&', $raw_post_data);
-    $myPost = array();
-    foreach ($raw_post_array as $keyval) {
-        $keyval = explode ('=', $keyval);
-        if (count($keyval) == 2) $myPost[$keyval[0]] = urldecode($keyval[1]);
-    }
-    $req = 'cmd=_notify-validate';
-    $get_magic_quotes_exists = function_exists('get_magic_quotes_gpc') ? true : false;
-    foreach ($myPost as $key => $value) {
-        if ($get_magic_quotes_exists == true && get_magic_quotes_gpc() == 1) {
-            $value = urlencode(stripslashes($value));
-        } else {
-            $value = urlencode($value);
-        }
-        $req .= "&$key=$value";
-    }
-    // Below will verify the transaction, it will make sure the input data is correct
-    $ch = curl_init($paypalurl);
-    curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-    curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
-    $res = curl_exec($ch);
-    curl_close($ch);
-    if (strcmp($res, 'VERIFIED') == 0) {
-        // Transaction is verified and successful...
-        $item_id = array();
-        $item_quantity = array();
-        $item_mc_gross = array();
-        // Add all the item numbers, quantities and prices to the above array variables
-        for ($i = 1; $i < ($_POST['num_cart_items']+1); $i++) {
-            array_push($item_id, $_POST['item_number' . $i]);
-            array_push($item_quantity, $_POST['quantity' . $i]);
-            array_push($item_mc_gross, $_POST['mc_gross_' . $i]);
-        }
-        // Insert the transaction into our transactions table, as the payment status changes the query will execute again and update it, make sure the "txn_id" column is unique
-        $stmt = $pdo->prepare('INSERT INTO transactions VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE payment_status = VALUES(payment_status)');
-        $stmt->execute([
-            NULL,
-            $_POST['txn_id'],
-            $_POST['mc_gross'],
-            $_POST['payment_status'],
-            implode(',', $item_id),
-            implode(',', $item_quantity),
-            implode(',', $item_mc_gross),
-            date('Y-m-d H:i:s'),
-            $_POST['payer_email'],
-            $_POST['first_name'],
-            $_POST['last_name'],
-            $_POST['address_street'],
-            $_POST['address_city'],
-            $_POST['address_state'],
-            $_POST['address_zip'],
-            $_POST['address_country']
-        ]);
-    }
-    exit;
-}
 
 if (isset($_POST['pay-cash'])) {
 	addtrans();
+  addorder();
 }
 
 function addtrans(){
@@ -192,17 +136,30 @@ global $product;
 	$postcode  =  $_POST['postcode'];
 	$address  =  $_POST['payer_address'];
 	$phonenumber  =  $_POST['phonenumber'];
-  $date  =  $_POST['todaydate'];
   $subtotal  =  $_POST['subtotal'];
-  $productid  =  $product['id'];
-  $productname  =  $product['name'];
-  $productquantity  =  $product['quantity'];
+
 
   $query = "INSERT INTO transactions (fullname, payer_email, payer_address, payment_status, payer_phone,
                                     	payer_postcode, payment_amount)
         VALUES('$fullname', '$email', '$address', 'Cash-payement', '$phonenumber', '$postcode', '$subtotal')";
   mysqli_query($database, $query);
   header('Location: index.php?page=placeorder');
+}
+
+function addorder(){
+$database = mysqli_connect('localhost', 'root', '', 'phplogin');
+global $product;
+global $item_id;
+global $item_quantity;
+global $item_mc_gross;
+
+
+	$order_total      =  $_POST['payer_email'];
+	$product_id  =  $_POST['postcode'];
+
+  $query = "INSERT INTO orders (orde_total, product_id)
+        VALUES('$item_mc_gross', '$item_id')";
+  mysqli_query($database, $query);
 }
 
 ?>
@@ -310,9 +267,9 @@ tr:nth-child(even) {
           <td class="price">&dollar;<?=$product['price'] * $products_in_cart[$product['id']]?></td>
         </tr>
         <?php endforeach; ?>
-        <?php endif; ?>
       </tbody>
     </table>
+
     <table style="margin: auto;" >
       <thead>
         <tr>
@@ -335,7 +292,6 @@ tr:nth-child(even) {
     </div>
     <div class="buttons" style="text-align:center; margin-bottom: 102px;">
       <input type="submit" value="Update" name="update">
-      <!-- <input type="submit" value="Place Order" name="placeorder"> -->
     </div>
   </form>
   <form method="post" action="cart.php">
@@ -377,6 +333,7 @@ tr:nth-child(even) {
           	</div>
           </td>
         </tr>
+      <?php endif; ?>
       </tbody>
     </table>
   </form>
